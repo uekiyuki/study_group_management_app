@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show; end
   # test
+  # test2
 
   # GET /events/new
   def new
