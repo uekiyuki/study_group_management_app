@@ -1,7 +1,12 @@
 class ParticipantsController < ApplicationController
   def create
-    current_user.participants.create(event_id: params[:event_id])
-    redirect_to event_path(params[:event_id]), notice: '勉強会の参加登録が完了しました'
+    @event = Event.find(params[:event_id])
+    if @event.participants.count >= @event.capacity
+      redirect_to event_path(@event), notice: '定員オーバーのため参加できません'
+    else
+      current_user.participants.create(event_id: @event.id)
+      redirect_to event_path(@event), notice: '勉強会の参加登録が完了しました'
+    end
   end
 
   def destroy
