@@ -13,6 +13,16 @@
   <%= @event.user.name %>
 </p>
 
+<p>
+  <strong>定員:</strong>
+  <%= "#{@event.capacity}名" %>
+</p>
+
+<p>
+  <strong>参加人数:</strong>
+  <%= "#{@event.participants.count}名" %>
+</p>
+
 <% if @event.user.id == current_user.id %>
 <% elsif @participant.present? %>
 <%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn btn-primary' %>
