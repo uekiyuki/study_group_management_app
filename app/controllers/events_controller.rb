@@ -14,7 +14,6 @@ class EventsController < ApplicationController
     @participant = current_user.participants.find_by(event_id: @event.id)
   end
 
-
   # GET /events/new
   def new
     @event = Event.new
