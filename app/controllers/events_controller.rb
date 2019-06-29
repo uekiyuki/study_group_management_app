@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @participant = current_user.participants.find_by(event_id: @event.id)
+    @participant = current_user.participants.find_by(event_id: @event.id) if current_user.present?
   end
 
   # GET /events/new

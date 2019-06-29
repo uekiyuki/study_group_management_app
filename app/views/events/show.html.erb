@@ -23,7 +23,7 @@
   <%= "#{@event.participants.count}名" %>
 </p>
 
-<% if @event.user.id == current_user.id %>
+<% if current_user.blank? || @event.user.id == current_user.id %>
 <% elsif @participant.present? %>
 <%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn btn-primary' %>
 <% elsif @event.capacity ==  @event.participants.count %>
