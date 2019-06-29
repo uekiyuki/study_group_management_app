@@ -62,10 +62,10 @@ jobs:
       # - run: mv config/database.yml.ci config/database.yml # ココらへんに追加
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
-      # Rspec
+      # RSpec
       - run:
           name: RSpec
-          command: bundle exec rspec spec/system/events_spec.rb
+          command: bundle exec rspec
 
 workflows:
   version: 2
