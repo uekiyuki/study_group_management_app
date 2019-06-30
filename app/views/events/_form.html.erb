@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'validate' %>
   </div>
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, placeholder: '具体的な説明を書きましょう！' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_at %>
+    <%= form.date_field :event_at, class: 'datepicker' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit  class: 'btn waves-effect waves-light' %>
   </div>
 <% end %>

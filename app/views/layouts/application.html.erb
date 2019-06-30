@@ -10,22 +10,42 @@
   </head>
 
   <body>
-    <ul>
-    <% if user_signed_in? %>
-      <li><%= link_to '勉強会投稿', new_event_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path %></li>
-      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-    <% end %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><i class="material-icons left">cloud</i>Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <% if user_signed_in? %>
+            <li><%= link_to '勉強会投稿', new_event_path, class: 'waves-effect waves-light' %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, class: 'waves-effect waves-light', method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'ログイン', new_user_session_path, class: 'waves-effect waves-light' %></li>
+            <li><%= link_to 'サインアップ', new_user_registration_path, class: 'waves-effect waves-light' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+      <% if user_signed_in? %>
+        <li><%= link_to '勉強会投稿', new_event_path, class: 'waves-effect waves-light' %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, class: 'waves-effect waves-light', method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path, class: 'waves-effect waves-light' %></li>
+        <li><%= link_to 'サインアップ', new_user_registration_path, class: 'waves-effect waves-light' %></li>
+      <% end %>
     </ul>
-    
+
     <% if notice %>
        <p class="alert alert-notice"><%= notice %></p>
      <% end %>
      <% if alert %>
        <p class="alert alert-error"><%= alert %></p>
      <% end %>
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

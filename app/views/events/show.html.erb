@@ -25,11 +25,11 @@
 
 <% if current_user.blank? || @event.user.id == current_user.id %>
 <% elsif @participant.present? %>
-<%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn btn-primary' %>
+<%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn waves-effect waves-light' %>
 <% elsif @event.capacity ==  @event.participants.count %>
 <%= '定員に達しているため参加できません' %>
 <% else %>
-<%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+<%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
 <% end %>
 <br>
 <%= link_to 'Edit', edit_event_path(@event) %> |

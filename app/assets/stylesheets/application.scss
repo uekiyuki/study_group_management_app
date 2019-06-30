@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+@import "materialize/components/color-variables";
+$primary-color: color("blue", "lighten-2") !default;
+$secondary-color: color("green", "base") !default;
+@import "materialize";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.waves-button-input {
+  color: #FFF;
+}
+
+.container {
+  margin: 33px;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  display: none;
+}
