@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   $('.sidenav').sidenav();
   $('.datepicker').datepicker({
     format: 'yyyy-mm-dd',
@@ -12,5 +12,4 @@ $(document).ready(function(){
     showMonthAfterYear: true,
     showClearBtn: true
   });
-
 });

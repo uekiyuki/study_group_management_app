@@ -1,0 +1,8 @@
+<% comments.each do |comment| %>
+  <% if comment.id.present? %>
+  <div>
+    <%= "投稿者:#{ comment.user.name }" %><br>
+    <%= comment.content %>
+  </div>
+  <% end %>
+<% end %>

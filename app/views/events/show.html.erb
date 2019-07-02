@@ -31,6 +31,13 @@
 <% else %>
 <%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
 <% end %>
-<br>
+
+
+<%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+
+<div id="comments_area">
+<%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+</div>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
