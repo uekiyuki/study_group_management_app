@@ -12,4 +12,5 @@ $(document).on('turbolinks:load', function(){
     showMonthAfterYear: true,
     showClearBtn: true
   });
+  $('.dropdown-trigger').dropdown();
 });

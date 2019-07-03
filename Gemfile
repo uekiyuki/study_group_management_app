@@ -41,6 +41,7 @@ gem 'rails_admin', '~> 2.0.0.beta'
 gem 'cancancan'
 gem 'materialize-sass'
 gem 'jquery-rails'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
