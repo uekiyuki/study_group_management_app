@@ -46,7 +46,8 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @events %>
+<%= page_entries_info @events %>
 <br>
 
 <%= link_to 'New Event', new_event_path %>
