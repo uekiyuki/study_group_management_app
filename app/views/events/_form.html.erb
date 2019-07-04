@@ -26,6 +26,11 @@
     <%= form.date_field :event_at, class: 'datepicker' %>
   </div>
 
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit  class: 'btn waves-effect waves-light' %>
   </div>
