@@ -43,6 +43,7 @@ gem 'materialize-sass'
 gem 'jquery-rails'
 gem 'ransack'
 gem 'kaminari'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'dotenv-rails'
+  gem 'awesome_print'
 end
 
 group :development do

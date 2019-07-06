@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   paginates_per 10
   has_one_attached :image
+  acts_as_taggable
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[title content created_at]

@@ -33,6 +33,8 @@
   <%= "#{@event.participants.count}名" %>
 </p>
 
+<p>tags: <%= raw(@event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
+
 <% if current_user.blank? || @event.user.id == current_user.id %>
 <% elsif @participant.present? %>
 <%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn waves-effect waves-light' %>

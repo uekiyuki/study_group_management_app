@@ -6,7 +6,11 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     # @events = Event.all
-    @search = Event.ransack(params[:q])
+    @search = if params[:tag]
+                Event.tagged_with(params[:tag]).ransack(params[:q])
+              else
+                Event.ransack(params[:q])
+              end
     @events = @search.result(distinct: true).order_desc.page(params[:page])
   end
 
@@ -20,7 +24,13 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @chk = []
+    respond_to do |format|
+      format.html { @event = Event.new }
+      format.js do
+        render 'create_tag'
+      end
+    end
   end
 
   # GET /events/1/edit
@@ -75,6 +85,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :content, :event_at, :image)
+    params.require(:event).permit(:title, :content, :event_at, :image, :tag_list)
   end
 end

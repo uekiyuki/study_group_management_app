@@ -19,3 +19,8 @@ Metrics/MethodLength:
 # MethodLengthを無効
 Metrics/BlockLength:
   Enabled: false
+
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
