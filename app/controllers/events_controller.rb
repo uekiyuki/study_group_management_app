@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
+    @event.tag_list.add(params[:event][:tag_list])
 
     respond_to do |format|
       if @event.save
@@ -52,17 +53,14 @@ class EventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    @event.tag_list.clear
+    @event.tag_list.add(params[:event][:tag_list])
+
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was successfully updated.'
+    else
+      render :edit
     end
   end
 

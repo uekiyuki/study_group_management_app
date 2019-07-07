@@ -31,16 +31,15 @@
     <%= form.file_field :image %>
   </div>
 
-  <div class='field'>
-    <%= form.text_field :tag_list, class: "custom-class"  %>
+
+  <div class="field">
+    <% Event.tag_counts.each do |tag| %>
+      <label>
+        <%= form.check_box :tag_list, { multiple: true , include_hidden: false}, tag[:name] %>
+        <span><%= tag.name %></span>
+      </label>
+    <% end %>
   </div>
-
-
-  <% Event.tag_counts.each do |tag| %>
-    <%= link_to tag.name, new_event_path(params: { tag_name: tag.name }), class: tag.name,remote: true %>
-  <% end %>
-  <%= form.hidden_field :tag_list, value: @chk.join(',') %>
-
 
   <hr>
 
