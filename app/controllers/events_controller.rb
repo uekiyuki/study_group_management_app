@@ -5,20 +5,34 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    # @events = Event.all
+    @search = if params[:tag]
+                Event.tagged_with(params[:tag]).ransack(params[:q])
+              else
+                Event.ransack(params[:q])
+              end
+    @events = @search.result(distinct: true).order_desc.page(params[:page])
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
     @participant = current_user.participants.find_by(event_id: @event.id) if current_user.present?
-    @comments = @event.comments.order_desc
+
+    @comments = @event.comments.includes(:user).order_desc
+
     @comment = @event.comments.build
   end
 
   # GET /events/new
   def new
-    @event = Event.new
+    @chk = []
+    respond_to do |format|
+      format.html { @event = Event.new }
+      format.js do
+        render 'create_tag'
+      end
+    end
   end
 
   # GET /events/1/edit
@@ -28,6 +42,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
+    @event.tag_list.add(params[:event][:tag_list])
 
     respond_to do |format|
       if @event.save
@@ -40,17 +55,14 @@ class EventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    @event.tag_list.clear
+    @event.tag_list.add(params[:event][:tag_list])
+
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -73,6 +85,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :content)
+    params.require(:event).permit(:title, :content, :event_at, :image, :tag_list)
   end
 end
