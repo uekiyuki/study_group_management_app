@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[name]
   end
@@ -14,4 +15,5 @@ class User < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     []
   end
+
 end
