@@ -37,6 +37,8 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'rails_admin', '~> 2.0.0.beta'
 gem 'cancancan'
 gem 'materialize-sass'

@@ -26,10 +26,16 @@
 
 <% end %>
 
+
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <%= f.hidden_field :email, value: ENV["test_user_email"] %>
 <%= f.hidden_field :password, value: ENV["test_user_password"] %>
 <%= f.submit 'テストユーザでログイン' %>
 <% end %>
+
+<div>
+  <%= link_to 'facebookでログインする', user_facebook_omniauth_authorize_path %>
+</div>
 
 <%= render "devise/shared/links" %>

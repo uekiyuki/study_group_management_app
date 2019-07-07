@@ -20,6 +20,10 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Enabled: false
 
+# module/classの定義方法を無効化
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 
 AllCops:
   Exclude:
