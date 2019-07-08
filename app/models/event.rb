@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :participants, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   paginates_per 10
   has_one_attached :image
   acts_as_taggable

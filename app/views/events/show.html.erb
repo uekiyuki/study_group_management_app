@@ -44,6 +44,14 @@
 <%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
 <% end %>
 
+<% if @favorite.present? %>
+<%= link_to 'あとで見るを取り消す', favorite_path(@favorite.id), method: :delete, class: 'btn waves-effect waves-light' %>
+<% else %>
+<%= link_to 'あとで見る', favorites_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
+<% end %>
+
+
+
 <h3>コメント</h3>
 <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } if user_signed_in? %>
 

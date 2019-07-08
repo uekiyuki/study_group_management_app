@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :participants, only: %i[create destroy]
+  resources :favorites, only: %i[create destroy]
   get 'tags/:tag', to: 'events#index', as: :tag
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
