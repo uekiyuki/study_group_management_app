@@ -20,7 +20,7 @@
 
 <p>
   <strong>開催者:</strong>
-  <%= @event.user.name %>
+  <%= link_to @event.user.name , user_path(@event.user) %>
 </p>
 
 <p>

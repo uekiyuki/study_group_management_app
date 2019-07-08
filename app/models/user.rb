@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_events, through: :favorites, source: :event
+  has_many :participant_events, through: :participants, source: :event
 
   def self.create_unique_string
     SecureRandom.uuid

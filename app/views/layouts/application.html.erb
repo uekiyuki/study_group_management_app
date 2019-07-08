@@ -16,6 +16,7 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <% if user_signed_in? %>
+            <li><%= link_to 'マイページ', user_path(current_user), class: 'waves-effect waves-light' %></li>
             <li><%= link_to '勉強会投稿', new_event_path, class: 'waves-effect waves-light' %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, class: 'waves-effect waves-light', method: :delete %></li>
           <% else %>
@@ -28,6 +29,7 @@
 
     <ul class="sidenav" id="mobile-demo">
       <% if user_signed_in? %>
+        <li><%= link_to 'マイページ', user_path(current_user), class: 'waves-effect waves-light' %></li>
         <li><%= link_to '勉強会投稿', new_event_path, class: 'waves-effect waves-light' %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, class: 'waves-effect waves-light', method: :delete %></li>
       <% else %>
@@ -38,10 +40,10 @@
 
     <% if notice %>
        <p class="alert alert-notice"><%= notice %></p>
-     <% end %>
-     <% if alert %>
-       <p class="alert alert-error"><%= alert %></p>
-     <% end %>
+    <% end %>
+    <% if alert %>
+    <p class="alert alert-error"><%= alert %></p>
+    <% end %>
 
     <div class="container">
       <%= yield %>

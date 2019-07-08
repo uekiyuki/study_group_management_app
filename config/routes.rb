@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :participants, only: %i[create destroy]
   resources :favorites, only: %i[create destroy]
+  resources :users, only: %i[show]
   get 'tags/:tag', to: 'events#index', as: :tag
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   has_many :favorites, dependent: :destroy
   paginates_per 10
   has_one_attached :image
+  has_many :favorite_users, through: :favorites, source: :user
+  has_many :participant_users, through: :participants, source: :user
   acts_as_taggable
 
   def self.ransackable_attributes(_auth_object = nil)
