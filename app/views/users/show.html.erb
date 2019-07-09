@@ -1,5 +1,9 @@
 <h1><%= @user.name %>のページ</h1>
+
 <%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', root_path){} %>
+
+<%= render 'follow_link', user: @user %>
+
 <br />
 
 <div class="row">

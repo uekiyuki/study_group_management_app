@@ -1,0 +1,11 @@
+<% unless current_user == user %>
+  <% if current_user.active_relationships.find_by(followed_id: user.id) %>
+    <div id="follow_link_<%= user.id %>">
+    <%= link_to 'フォローしない', relationship_path(current_user.active_relationships.find_by(followed_id: user.id)), method: :delete, remote: true %>
+    </div>
+  <% else %>
+    <div id="follow_link_<%= user.id %>">
+    <%= link_to 'フォローする', relationships_path(followed_id: user.id), method: :post, remote: true %>
+    </div>
+  <% end %>
+<% end %>
