@@ -35,6 +35,7 @@
 
 <p>tags: <%= raw(@event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
 
+<% if current_user.present? && current_user != @event.user %>
 <div id="participate_link_<%= "#{@event.id}" %>">
 <%= render 'participate_link', event: @event %>
 </div>
@@ -42,6 +43,7 @@
 <div id="favorite_link_<%= "#{@event.id}" %>">
 <%= render 'favorite_link', event: @event %>
 </div>
+<% end %>
 
 <h3>コメント</h3>
 <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } if user_signed_in? %>
