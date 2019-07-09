@@ -35,14 +35,9 @@
 
 <p>tags: <%= raw(@event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
 
-<% if current_user.blank? || @event.user.id == current_user.id %>
-<% elsif @participant.present? %>
-<%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn waves-effect waves-light' %>
-<% elsif @event.capacity ==  @event.participants.count %>
-<%= '定員に達しているため参加できません' %>
-<% else %>
-<%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
-<% end %>
+<div id="participate_link_<%= "#{@event.id}" %>">
+<%= render 'participate_link', event: @event %>
+</div>
 
 <% if @favorite.present? %>
 <%= link_to 'あとで見るを取り消す', favorite_path(@favorite.id), method: :delete, class: 'btn waves-effect waves-light' %>

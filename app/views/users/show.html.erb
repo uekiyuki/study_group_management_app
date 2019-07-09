@@ -2,7 +2,11 @@
 
 <%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', root_path){} %>
 
+<% unless current_user == @user %>
+<div id="follow_link_<%= @user.id %>">
 <%= render 'follow_link', user: @user %>
+</div>
+<% end %>
 
 <br />
 
