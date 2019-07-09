@@ -1,6 +1,6 @@
 <h1><%= @user.name %>のページ</h1>
 
-<%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', root_path){} %>
+<%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', edit_user_registration_path ){} %>
 
 <% unless current_user.blank? || current_user == @user %>
 <div id="follow_link_<%= @user.id %>">
