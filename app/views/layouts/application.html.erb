@@ -45,9 +45,15 @@
     <p class="alert alert-error"><%= alert %></p>
     <% end %>
 
-    <div class="container">
-      <%= yield %>
-    </div>
 
+    <main class="container">
+      <%= yield %>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        © 2019 Copyright 勉強会サーチアプリ
+      </div>
+    </footer>
   </body>
 </html>

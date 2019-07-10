@@ -25,27 +25,22 @@
     <li><%= sort_link(@search, :content,  [:content, 'created_at desc'], "内容で並び替える", hide_indicator: true) %></li>
   </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= sort_link(@search, :title,  [:title, 'created_at desc']) %></th>
-      <th><%= sort_link(@search, :content,  [:content, 'created_at desc']) %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row flex">
+<% @events.each do |event| %>
+  <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag event.image if event.image.attached? %>
+      </div>
+      <div class="card-content">
+        <%= event.title %>
+        <p><%= link_to '詳しく見てみる', event %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.content %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <%= paginate @events %>
 <%= page_entries_info @events %>
 <br>

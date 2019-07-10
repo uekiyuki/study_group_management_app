@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  paginates_per 10
+  paginates_per 12
   has_one_attached :image
   has_many :favorite_users, through: :favorites, source: :user
   has_many :participant_users, through: :participants, source: :user
