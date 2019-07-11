@@ -1,3 +1,4 @@
+<div id="participate_link_<%= "#{event.id}" %>">
 <% if current_user.participants.find_by(event_id: event.id) %>
 <%= link_to 'キャンセルする', participant_path(current_user.participants.find_by(event_id: event.id)), method: :delete, remote: true, class: 'btn waves-effect waves-light' %>
 <% elsif event.capacity <=  event.participants.count %>
@@ -5,3 +6,4 @@
 <% else %>
 <%= link_to '参加する', participants_path(event_id: event.id), method: :post, remote: true, class: 'btn waves-effect waves-light' %>
 <% end %>
+</div>

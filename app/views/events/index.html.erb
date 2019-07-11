@@ -1,29 +1,21 @@
-<% if current_user.try(:admin?) %>
-  <h1>Events_admin</h1>
-<% else %>
-  <h1>Events</h1>
-<% end %>
+<h1>勉強会を検索する</h1>
 
-<%= search_form_for @search do |f| %>
-  <%= f.label :title_cont, "タイトル" %>
-  <%= f.search_field :title_cont %>
+<div class="row">
+  <%= search_form_for @search do |f| %>
+  <%= f.search_field :title_cont, placeholder: "例：Ruby Rails Vue.js 英語　などなど", class: "col s10"  %>
+  <%= f.submit "検索", class: "btn waves-effect waves-light col s1", data: { disable_with: "送信中..." }  %>
+  <%= link_to 'クリア', request.path, class: "btn waves-effect waves-light col s1", data: { disable_with: "送信中..." } %>
+  <% end %>
+</div>
 
-  <%= f.label :content_cont, "内容" %>
-  <%= f.search_field :content_cont %>
+<br />
+<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>ソートする</a>
 
-  <%= f.label :user_name_cont, "投稿ユーザ" %>
-  <%= f.search_field :user_name_cont %>
-
-  <div class="actions"><%= f.submit "検索" %></div>
-  <%= link_to 'クリア', request.path %>
-<% end %>
-
-  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>ソートする</a>
-
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><%= sort_link(@search, :title,  [:title, 'created_at desc'], "タイトルで並び替える", hide_indicator: true) %></li>
-    <li><%= sort_link(@search, :content,  [:content, 'created_at desc'], "内容で並び替える", hide_indicator: true) %></li>
-  </ul>
+<ul id='dropdown1' class='dropdown-content'>
+  <li><%= sort_link(@search, :title,  [:title, 'created_at desc'], "タイトルで並び替える", hide_indicator: true) %></li>
+  <li><%= sort_link(@search, :content,  [:content, 'created_at desc'], "内容で並び替える", hide_indicator: true) %></li>
+  <li><%= sort_link(@search, :event_at,  [:event_at, 'created_at desc'], "開催日順で並び替える", hide_indicator: true) %></li>
+</ul>
 
 <div class="row flex">
 <% @events.each do |event| %>
@@ -33,8 +25,8 @@
         <%= image_tag event.image if event.image.attached? %>
       </div>
       <div class="card-content">
-        <%= event.title %>
-        <p><%= link_to '詳しく見てみる', event %></p>
+        <%= link_to event.title, event, class: "event_title" %>
+        <%= render 'favorite_link', event: event if user_signed_in? %>
       </div>
     </div>
   </div>
@@ -43,6 +35,3 @@
 
 <%= paginate @events %>
 <%= page_entries_info @events %>
-<br>
-
-<%= link_to 'New Event', new_event_path %>

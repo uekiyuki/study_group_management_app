@@ -38,8 +38,18 @@ input[type=date]::-webkit-calendar-picker-indicator {
   text-align: center;
 }
 
+.card{
+  overflow-wrap: break-word;
+}
+
 .card-content{
-  overflow-wrap : break-word;
+  font-size: 1.5rem;
+  a.event_title{
+    transition: all .3s;
+    &:hover {
+      color: gold;
+    }
+  }
 }
 
 .flex {
@@ -55,4 +65,9 @@ body {
 
 main {
   flex: 1 0 auto;
+  background-color: #E9EBEE;
+}
+
+.event_tab {
+  background-color: #fff;
 }

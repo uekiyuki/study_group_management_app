@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  potected
+  protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
