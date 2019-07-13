@@ -15,7 +15,7 @@
 
 <p>
   <strong>開催日:</strong>
-  <%= @event.event_at %>
+  <%= @event.event_at.strftime("%Y/%m/%d") if event.event_at.present? %>
 </p>
 
 <p>
@@ -51,4 +51,3 @@
 <%= link_to 'Back', events_path %>
 <br />
 <%= link_to 'Edit', edit_event_path(@event) %>
-<%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>

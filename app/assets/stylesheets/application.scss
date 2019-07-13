@@ -44,8 +44,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
 .card-content{
   font-size: 1.5rem;
-  a.event_title{
+  a.event-title {
     transition: all .3s;
+    vertical-align: 100%;
+    font-size: 1.5rem;
     &:hover {
       color: gold;
     }

@@ -1,0 +1,17 @@
+<div class="card horizontal">
+  <div class="card-stacked">
+    <div class="card-content">
+      <%= image_tag event.image.variant(resize:'100x100').processed if event.image.attached? %>
+      <%= link_to event.title, event_path(event), class: "event-title" %><br />
+      <div class="card-content-memo">
+        <i class="material-icons tiny">location_on</i><%= event.location %><br />
+        <i class="material-icons tiny">access_time</i><%= event.event_at.strftime("%Y/%m/%d") if event.event_at.present? %>
+      </div>
+    </div>
+    <% if event.user == current_user %>
+    <div class="card-action">
+      <%= link_to '開催を中止する', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+    <% end %>
+  </div>
+</div>

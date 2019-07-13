@@ -25,7 +25,7 @@
         <%= image_tag event.image if event.image.attached? %>
       </div>
       <div class="card-content">
-        <%= link_to event.title, event, class: "event_title" %>
+        <%= link_to event.title, event, class: "event-title" %>
         <%= render 'favorite_link', event: event if user_signed_in? %>
       </div>
     </div>
