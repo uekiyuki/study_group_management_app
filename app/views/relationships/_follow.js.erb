@@ -1,1 +1,3 @@
 $("#follow_link_"+"<%= @user.id %>").html("<%= j(render partial: 'users/follow_link', locals: { user: @user }) %>")
+
+$("#event_tab5").html("<%= j(render partial: 'users/follower_tab', locals: { user: @user }) %>")
