@@ -17,4 +17,12 @@ class Event < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     %w[user]
   end
+
+  def self.find_test_event
+    Event.find(1)
+  end
+
+  def image_resize
+    image.variant(resize: '200x200').processed
+  end
 end
