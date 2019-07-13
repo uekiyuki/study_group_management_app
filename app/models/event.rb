@@ -22,7 +22,7 @@ class Event < ApplicationRecord
     Event.find(1)
   end
 
-  def image_resize
-    image.variant(resize: '200x200').processed
+  def image_resize(size)
+    image.variant(resize: "#{size}x#{size}").processed
   end
 end

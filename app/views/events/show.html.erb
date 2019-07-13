@@ -1,6 +1,6 @@
 <p>
   <strong>Image:</strong>
-  <%= @event.image.attached? ? image_tag(@event.image_resize) : image_tag(Event.find_test_event.image_resize)  %>
+  <%= @event.image.attached? ? image_tag(@event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))  %>
 </p>
 
 <p>

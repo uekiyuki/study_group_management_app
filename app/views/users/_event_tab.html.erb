@@ -1,7 +1,7 @@
 <div class="card horizontal">
   <div class="card-stacked">
     <div class="card-content">
-      <%= image_tag event.image.variant(resize:'100x100').processed if event.image.attached? %>
+      <%= event.image.attached? ? image_tag(event.image_resize(150)) : image_tag(Event.find_test_event.image_resize(150))  %>
       <%= link_to event.title, event_path(event), class: "event-title" %><br />
       <div class="card-content-memo">
         <i class="material-icons tiny">location_on</i><%= event.location %><br />
