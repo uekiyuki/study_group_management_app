@@ -46,6 +46,10 @@ gem 'jquery-rails'
 gem 'ransack'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+gem 'aws-sdk-s3', require: false
+gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,8 +59,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'dotenv-rails'
   gem 'awesome_print'
+
+  # capistranoのツール一式
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
