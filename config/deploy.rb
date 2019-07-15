@@ -2,11 +2,11 @@
 lock '3.6.0'
 
 set :application, 'study_group_management_app'
-set :repo_url, 'git@github.com:tab1990/study_group_management_app.git'
+set :repo_url, 'https://github.com/tab1990/study_group_management_app'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
+set :branch, ENV['BRANCH'] || 'master'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/study_group_management_app'
 
@@ -38,6 +38,10 @@ set :keep_releases, 5
 # Rubyのバージョン
 set :rbenv_ruby, '2.6.3'
 set :rbenv_type, :system
+
+# シンボリックリンクをはるフォルダ・ファイル
+set :linked_files, %w{.env config/secrets.yml}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 # 出力するログのレベル
 set :log_level, :info
