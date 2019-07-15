@@ -36,7 +36,7 @@ set :deploy_to, '/var/www/study_group_management_app'
 set :keep_releases, 5
 
 # Rubyのバージョン
-set :rbenv_ruby, '2.5.1'
+set :rbenv_ruby, '2.6.3'
 set :rbenv_type, :system
 
 # 出力するログのレベル
