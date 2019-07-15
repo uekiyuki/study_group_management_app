@@ -43,6 +43,7 @@ gem 'rails_admin', '~> 2.0.0.beta'
 gem 'cancancan'
 gem 'materialize-sass'
 gem 'jquery-rails'
+
 gem 'ransack'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
+
   gem 'awesome_print'
 
   # capistranoのツール一式
@@ -67,6 +69,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
+
 end
 
 group :development do
