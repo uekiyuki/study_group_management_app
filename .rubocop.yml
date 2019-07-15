@@ -31,3 +31,5 @@ AllCops:
     - 'db/**/*'
     - 'vendor/**/*'
     - 'Gemfile'
+    - 'Capfile'
+    - 'config/**/*'
