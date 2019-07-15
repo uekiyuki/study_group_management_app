@@ -1,6 +1,6 @@
 <p>
   <strong>Image:</strong>
-  <%= image_tag @event.image.variant(resize:'300x300').processed if @event.image.attached? %>
+  <%= @event.image.attached? ? image_tag(@event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))  %>
 </p>
 
 <p>
@@ -15,12 +15,12 @@
 
 <p>
   <strong>開催日:</strong>
-  <%= @event.event_at %>
+  <%= @event.event_at.strftime("%Y/%m/%d") if @event.event_at.present? %>
 </p>
 
 <p>
   <strong>開催者:</strong>
-  <%= @event.user.name %>
+  <%= link_to @event.user.name , user_path(@event.user) %>
 </p>
 
 <p>
@@ -35,13 +35,9 @@
 
 <p>tags: <%= raw(@event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
 
-<% if current_user.blank? || @event.user.id == current_user.id %>
-<% elsif @participant.present? %>
-<%= link_to 'キャンセルする', participant_path(@participant.id), method: :delete, class: 'btn waves-effect waves-light' %>
-<% elsif @event.capacity ==  @event.participants.count %>
-<%= '定員に達しているため参加できません' %>
-<% else %>
-<%= link_to '参加する', participants_path(event_id: @event.id), method: :post, class: 'btn waves-effect waves-light' %>
+<% if user_signed_in? && current_user != @event.user %>
+<%= render 'participate_link', event: @event %>
+<%= render 'favorite_link', event: @event %>
 <% end %>
 
 
@@ -55,3 +51,5 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<br />
+<%= link_to 'Edit', edit_event_path(@event) %>

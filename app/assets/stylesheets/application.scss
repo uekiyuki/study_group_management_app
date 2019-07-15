@@ -24,10 +24,6 @@ $secondary-color: color("green", "base") !default;
   color: #FFF;
 }
 
-.container {
-  margin: 33px;
-}
-
 input[type=date]::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
   display: none;
@@ -35,4 +31,45 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
 .field label {
   pointer-events: auto;
+}
+
+.page-footer {
+  padding: 10px;
+  text-align: center;
+}
+
+.card{
+  overflow-wrap: break-word;
+}
+
+.card-content{
+  font-size: 1.5rem;
+  a.event-title {
+    transition: all .3s;
+    vertical-align: 100%;
+    font-size: 1.5rem;
+    &:hover {
+      color: gold;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  background-color: #E9EBEE;
+}
+
+.event_tab {
+  background-color: #fff;
 }

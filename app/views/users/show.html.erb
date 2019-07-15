@@ -1,0 +1,62 @@
+<% if @user.try(:admin?) %>
+  <h1>【管理者】<%= @user.name %>のページ</h1>
+<% else %>
+  <h1><%= @user.name %>のページ</h1>
+<% end %>
+
+
+
+<%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', edit_user_registration_path ){} %>
+
+<% unless current_user.blank? || current_user == @user %>
+<div id="follow_link_<%= @user.id %>">
+<%= render 'follow_link', user: @user %>
+</div>
+<% end %>
+
+<br />
+
+<h3>勉強会管理</h3>
+<div class="row event_tab">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s4"><a href="#event_tab1">参加</a></li>
+      <li class="tab col s4"><a href="#event_tab2">開催</a></li>
+      <li class="tab col s4"><a href="#event_tab3">お気に入り</a></li>
+    </ul>
+  </div>
+  <div id="event_tab1" class="col s12">
+    <% @user.participant_events.each do |event| %>
+      <%= render 'event_tab', event: event %>
+    <% end %>
+  </div>
+  <div id="event_tab2" class="col s12">
+    <% @user.events.each do |event| %>
+      <%= render 'event_tab', event: event %>
+    <% end %>
+  </div>
+  <div id="event_tab3" class="col s12">
+    <% @user.favorite_events.each do |event| %>
+      <%= render 'event_tab', event: event %>
+    <% end %>
+  </div>
+</div>
+
+<h3>フォローユーザ、フォロワーユーザ</h3>
+<div class="row event_tab">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s6"><a href="#event_tab4">フォロー</a></li>
+      <li class="tab col s6"><a href="#event_tab5">フォロワー</a></li>
+    </ul>
+  </div>
+  <div id="event_tab4" class="col s12">
+    <% @user.following.each do |user| %>
+      <%= link_to user.name, user_path(user) %><br />
+    <% end %>
+  </div>
+
+  <div id="event_tab5" class="col s12">
+    <%= render 'follower_tab', user: @user %>
+  </div>
+</div>
