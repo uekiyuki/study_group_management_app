@@ -40,8 +40,10 @@
 <%= render 'favorite_link', event: @event %>
 <% end %>
 
+
 <h3>コメント</h3>
 <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } if user_signed_in? %>
+
 
 <div id="comments_area">
 <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>

@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     # @participant = current_user.participants.find_by(event_id: @event.id) if user_signed_in?
     # @favorite = current_user.favorites.find_by(event_id: @event.id) if user_signed_in?
     @comments = @event.comments.includes(:user).order_desc
+
     @comment = @event.comments.build
   end
 
