@@ -42,6 +42,7 @@ set :rbenv_type, :system
 # シンボリックリンクをはるフォルダ・ファイル
 set :linked_files, %w{.env config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # 出力するログのレベル
 set :log_level, :info
