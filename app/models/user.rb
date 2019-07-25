@@ -14,10 +14,12 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # ランダムな文字列を作成
   def self.create_unique_string
     SecureRandom.uuid
   end
 
+  # facebookで認証できるユーザを見つける
   def self.find_for_facebook(auth)
     user = User.find_by(email: auth.info.email)
 
@@ -30,13 +32,13 @@ class User < ApplicationRecord
     user
   end
 
-
+  # ransackで有効な属性を指定
   def self.ransackable_attributes(_auth_object = nil)
     %w[name]
   end
 
+  # ransackで有効なアソシエーションを指定
   def self.ransackable_associations(_auth_object = nil)
     []
   end
-
 end
