@@ -28,12 +28,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image %><br />
     <%= form.file_field :image %>
   </div>
 
-
   <div class="field">
+    <%= form.label :tag_list, "タグ一覧" %><br />
     <% Event.tag_counts.each do |tag| %>
       <label>
         <%= form.check_box :tag_list, { multiple: true , include_hidden: false}, tag[:name] %>
