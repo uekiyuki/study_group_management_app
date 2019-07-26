@@ -3,8 +3,7 @@
 <% else %>
   <h1><%= @user.name %>のページ</h1>
 <% end %>
-
-
+<%= render 'follow_tag', user: @user %>
 
 <%= link_to_if(current_user == @user, 'プロフィールの編集はこちら', edit_user_registration_path ){} %>
 
@@ -42,7 +41,7 @@
   </div>
 </div>
 
-<h3>フォローユーザ、フォロワーユーザ</h3>
+<h3>フォロー管理</h3>
 <div class="row event_tab">
   <div class="col s12">
     <ul class="tabs">

@@ -41,4 +41,9 @@ class User < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     []
   end
+
+  # フォローしているかどうかを確認する
+  def following?(other_user)
+    active_relationships.find_by(followed_id: other_user.id)
+  end
 end
