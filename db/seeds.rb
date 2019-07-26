@@ -15,6 +15,6 @@ end
 
 1.times do |n|
   @event = Event.find(1)
-  @event.tag_list.add("無料", "期間限定","女子限定")
+  @event.tag_list.add("参加費無料", "期間限定","女子限定","２０代限定","３０代限定")
   @event.save
 end
