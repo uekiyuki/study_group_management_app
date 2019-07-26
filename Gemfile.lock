@@ -81,6 +81,9 @@ GEM
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
+    bullet (6.0.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.0.1)
     cancancan (3.0.1)
     capistrano (3.6.0)
@@ -185,7 +188,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    libv8 (7.3.492.27.1-x86_64-darwin-18)
+    libv8 (7.3.492.27.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -370,6 +373,7 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    uniform_notifier (1.12.1)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -392,6 +396,7 @@ DEPENDENCIES
   aws-sdk-s3
   bcrypt_pbkdf
   bootsnap (>= 1.1.0)
+  bullet
   byebug
   cancancan
   capistrano (= 3.6.0)
