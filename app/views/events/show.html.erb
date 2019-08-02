@@ -1,6 +1,6 @@
 <p>
   <strong>Image:</strong>
-  <%= @event.image.attached? ? image_tag(@event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))  %>
+  <%= @event.indicate_image %>
 </p>
 
 <p>
@@ -15,7 +15,7 @@
 
 <p>
   <strong>開催日:</strong>
-  <%= @event.event_at.strftime("%Y/%m/%d") if @event.event_at.present? %>
+  <%= l @event.event_at if @event.event_at.present? %>
 </p>
 
 <p>

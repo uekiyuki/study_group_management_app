@@ -7,7 +7,7 @@ ja:
       previous: "&lsaquo;"
       truncate: "&hellip;"
 
-      
+
   helpers:
     page_entries_info:
       more_pages:
@@ -17,3 +17,7 @@ ja:
           one: "<b>%{count}</b>レコード表示中です"
           other: "<b>%{count}</b>レコード表示中です"
           zero: "レコードが見つかりませんでした"
+
+  time:
+    formats:
+      default: "%Y/%m/%d"

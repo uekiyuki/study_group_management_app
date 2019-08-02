@@ -5,7 +5,7 @@
       <%= link_to event.title, event_path(event), class: "event-title" %><br />
       <div class="card-content-memo">
         <i class="material-icons tiny">location_on</i><%= event.location %><br />
-        <i class="material-icons tiny">access_time</i><%= event.event_at.strftime("%Y/%m/%d") if event.event_at.present? %>
+        <i class="material-icons tiny">access_time</i><%= l event.event_at if event.event_at.present? %>
       </div>
     </div>
     <% if event.user == current_user %>
