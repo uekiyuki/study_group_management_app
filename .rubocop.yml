@@ -9,8 +9,8 @@ Metrics/LineLength:
   Enabled: false
 
 # AbcSizeの上限値を変更（15→20）
-Metrics/AbcSize:
-  Max: 20
+# Metrics/AbcSize:
+#   Max: 20
 
 # MethodLengthの上限値を変更（12→20）
 Metrics/MethodLength:
@@ -26,6 +26,10 @@ Style/ClassAndModuleChildren:
 
 # AsciiCommentsを有効
 Style/AsciiComments:
+  Enabled: false
+
+# AsciiCommentsを有効
+Metrics/AbcSize:
   Enabled: false
 
 AllCops:
