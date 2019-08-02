@@ -31,4 +31,9 @@ class Event < ApplicationRecord
   def image_resize(size)
     image.variant(resize: "#{size}x#{size}").processed
   end
+
+  # 画像の表示
+  def indicate_image
+    image.attached? ? image_tag(image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))
+  end
 end
