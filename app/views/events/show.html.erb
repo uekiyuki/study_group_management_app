@@ -1,16 +1,26 @@
 <p>
   <strong>Image:</strong>
-  <%= @event.indicate_image %>
+  <%= @event.image.attached? ? image_tag(@event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))  %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @event.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>詳細:</strong>
   <%= @event.content %>
+</p>
+
+<p>
+  <strong>開催地:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>料金:</strong>
+  <%= @event.price %>
 </p>
 
 <p>

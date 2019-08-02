@@ -8,7 +8,8 @@ ja:
         title: "タイトル"
         content: "内容"
         event_at: "開催日"
-
+        location: "開催地"
+        price: "料金"
         image: "イメージ"
 
       contact:
