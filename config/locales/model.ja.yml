@@ -6,12 +6,12 @@ ja:
     attributes:
       event:
         title: "タイトル"
-        content: "内容"
+        content: "詳細"
         event_at: "開催日"
-        location: "開催地"
-        price: "料金"
+        location: "開催場所"
+        price: "参加費（円）"
         image: "イメージ"
-        capacity: "参加人数"
+        capacity: "定員（人）"
 
       contact:
         name: "名前"
