@@ -33,18 +33,8 @@ class Event < ApplicationRecord
     %w[user]
   end
 
-  # 初期登録Eventを抽出
-  def self.find_test_event
-    Event.find(1)
-  end
-
   # 画像のリサイズ
   def image_resize(size)
     image.variant(resize: "#{size}x#{size}").processed
-  end
-
-  # 画像の表示
-  def indicate_image
-    image.attached? ? image_tag(image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))
   end
 end
