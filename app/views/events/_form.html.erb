@@ -1,8 +1,6 @@
 <%= form_with(model: event, local: true) do |form| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
       <% event.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,7 +11,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, class: 'validate' %>
+    <%= form.text_field :title %>
   </div>
 
   <div class="field">
@@ -26,19 +24,21 @@
     <%= form.text_field :location %>
   </div>
 
-  <div class="field">
+  <div class="field row">
+    <div class="col s3">
     <%= form.label :price %><br />
-    <%= form.number_field :price, placeholder: '数値のみ入力可' %>
-  </div>
+    <%= form.number_field :price, placeholder: '数値のみ入力可／単位は円', min: 0 %>
+    </div>
 
-  <div class="field">
-    <%= form.label :event_at %>
+    <div class="col s3 push-s1">
+    <%= form.label :event_at %><br />
     <%= form.date_field :event_at, class: 'datepicker' %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :image %><br />
-    <%= form.file_field :image %>
+    <div class="col s3 push-s2">
+    <%= form.label :capacity %><br />
+    <%= form.number_field :capacity, placeholder: '数値のみ入力可／単位は人', min: 0 %>
+    </div>
   </div>
 
   <div class="field">
@@ -49,10 +49,14 @@
         <span><%= tag.name %></span>
       </label>
     <% end %>
-
   </div>
 
-  <hr>
+  <div class="field">
+    <%= form.label :image %><br />
+    <%= form.file_field :image %>
+  </div>
+
+  <br />
 
   <div class="actions">
     <%= form.submit  class: 'btn waves-effect waves-light' %>

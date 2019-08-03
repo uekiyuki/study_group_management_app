@@ -11,6 +11,7 @@ ja:
         location: "開催地"
         price: "料金"
         image: "イメージ"
+        capacity: "参加人数"
 
       contact:
         name: "名前"
