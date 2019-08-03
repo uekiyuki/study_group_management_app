@@ -23,7 +23,7 @@
     <div class="card">
       <div class="card-image">
         <%= content_tag(:div, "開催済み", class: "card-finished") if event.event_at < Date.current %>
-        <%= event.image.attached? ? image_tag(event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200))  %>
+        <%= event.image.attached? ? image_tag(event.image_resize(200)) : image_tag(Event.find_test_event.image_resize(200)) %>
       </div>
       <div class="card-content">
         <%= link_to event.title, event, class: "event-title" %>

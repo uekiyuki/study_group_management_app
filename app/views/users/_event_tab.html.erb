@@ -9,7 +9,7 @@
         <i class="material-icons tiny">access_time</i><%= l event.event_at if event.event_at.present? %>
       </div>
     </div>
-    <% if event.user == current_user %>
+    <% if event.user_id == current_user.id %>
     <div class="card-action">
       <%= link_to '開催を中止する', event, method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>

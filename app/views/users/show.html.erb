@@ -30,7 +30,7 @@
     <% end %>
   </div>
   <div id="event_tab2" class="col s12">
-    <% @user.events.each do |event| %>
+    <% @user.events.includes(:image_attachment).each do |event| %>
       <%= render 'event_tab', event: event %>
     <% end %>
   </div>
