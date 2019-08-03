@@ -10,7 +10,7 @@ class EventsController < ApplicationController
                 Event.ransack(params[:q])
               end
     @events = @search.result(distinct: true).order_desc.page(params[:page])
-    @events = @events.includes(:image_attachment)
+    @events = @events.includes(image_attachment: :blob)
   end
 
   def show

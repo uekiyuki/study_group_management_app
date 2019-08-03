@@ -25,7 +25,7 @@ class Event < ApplicationRecord
 
   # ransackで有効な属性を指定
   def self.ransackable_attributes(_auth_object = nil)
-    %w[title content created_at]
+    %w[title content created_at event_at]
   end
 
   # ransackで有効なアソシエーションを指定
