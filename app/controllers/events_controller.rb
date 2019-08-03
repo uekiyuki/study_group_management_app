@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @event.tag_list.add(params[:event][:tag_list])
 
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      redirect_to @event, notice: 'イベントが作成されました！'
     else
       render :new
     end
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event.tag_list.add(params[:event][:tag_list])
 
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: 'イベントが更新されました！'
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_url, notice: 'イベントが削除されました！'
   end
 
   private
