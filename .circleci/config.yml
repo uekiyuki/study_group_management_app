@@ -13,7 +13,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
           name: setup bundler
@@ -24,11 +23,9 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # Rubocop
       - run:
           name: Rubocop
           command: bundle exec rubocop
-
   rspec:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers-legacy
@@ -36,7 +33,6 @@ jobs:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: root
-      # - image: circleci/postgres:9.6.2-alpine
       - image: circleci/postgres:11.3
         environment:
           POSTGRES_USER: root
@@ -47,31 +43,59 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
           name: setup bundler
-          command: |
-            sudo gem install bundler
+          command: sudo gem install bundler
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: yarn install
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # - run: mv config/database.yml.ci config/database.yml # ココらへんに追加
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
-      # RSpec
       - run:
           name: RSpec
           command: bundle exec rspec
+  deploy:
+    docker:
+      - image: circleci/ruby:2.6.3-node-browsers-legacy
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run:
+          name: setup bundler
+          command: sudo gem install bundler
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: yarn install
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: deploy
+          command: bundle exec cap production deploy
 
 workflows:
   version: 2
-  rubocop_rspec:
+  rubocop_rspec_deploy:
     jobs:
       - rubocop
       - rspec:
           requires:
             - rubocop
+      - deploy:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only: master
