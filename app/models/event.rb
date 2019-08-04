@@ -11,7 +11,7 @@ class Event < ApplicationRecord
 
   paginates_per 12
 
-  validates :title, presence: true, length: { in: 1..32 }
+  validates :title, presence: true, length: { maximum: 32 }
   validates :location, presence: true, length: { maximum: 32 }
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :event_at, presence: true
