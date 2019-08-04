@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe '勉強会表示機能', type: :system do
-  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com') }
-  let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com') }
-  let(:user_c) { FactoryBot.create(:user, name: 'ユーザーC', email: 'c@example.com') }
-  let(:user_d) { FactoryBot.create(:user, name: 'ユーザーD', email: 'd@example.com') }
+  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com', uid: 'aaa') }
+  let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com', uid: 'bbb') }
+  let(:user_c) { FactoryBot.create(:user, name: 'ユーザーC', email: 'c@example.com', uid: 'ccc') }
+  let(:user_d) { FactoryBot.create(:user, name: 'ユーザーD', email: 'd@example.com', uid: 'ddd') }
   let!(:event_a) { FactoryBot.create(:event, title: 'ユーザAの勉強会', user: user_a) }
   let!(:event_b) { FactoryBot.create(:event, title: 'ユーザBの勉強会', capacity: 2, user: user_b) }
 
@@ -12,7 +12,8 @@ describe '勉強会表示機能', type: :system do
     visit new_user_session_path
     fill_in 'メールアドレス', with: login_user.email
     fill_in 'パスワード', with: login_user.password
-    click_button 'Log in'
+    click_button 'ログイン'
+    page.driver.browser.manage.window.resize_to(1024, 768)
   end
 
   shared_examples_for 'ユーザAの勉強会が表示される' do
@@ -34,7 +35,7 @@ describe '勉強会表示機能', type: :system do
       it_behaves_like 'ユーザAの勉強会が表示される'
     end
 
-    context 'ユーザがログインしていないとき' do
+    context 'だれもログインしていないとき' do
       let(:login_user) { user_a }
       it 'ユーザAの勉強会が表示されている' do
         click_on 'ログアウト'
