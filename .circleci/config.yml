@@ -58,32 +58,7 @@ jobs:
       - run:
           name: RSpec
           command: bundle exec rspec
-  deploy:
-    docker:
-      - image: circleci/ruby:2.6.3-node-browsers-legacy
-        environment:
-          RAILS_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: root
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-      - run:
-          name: setup bundler
-          command: sudo gem install bundler
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: yarn install
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: deploy
-          command: bundle exec cap production deploy
+  # deploy:
 
 workflows:
   version: 2
@@ -93,9 +68,9 @@ workflows:
       - rspec:
           requires:
             - rubocop
-      - deploy:
-          requires:
-            - rspec
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      #     requires:
+      #       - rspec
+      #     filters:
+      #       branches:
+      #         only: master
