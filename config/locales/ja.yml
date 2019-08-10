@@ -14,9 +14,9 @@ ja:
         display_entries: "<b>%{total}</b>件中<b>%{first} - %{last}</b>番目の%{entry_name}を表示しています"
       one_page:
         display_entries:
-          one: "<b>%{count}</b>レコード表示中です"
-          other: "<b>%{count}</b>レコード表示中です"
-          zero: "レコードが見つかりませんでした"
+          one: "<b>%{count}</b>件表示中です"
+          other: "<b>%{count}</b>件表示中です"
+          zero: "勉強会が見つかりませんでした"
 
   time:
     formats:
