@@ -1,7 +1,17 @@
 <div id="favorite_link_<%= "#{event.id}" %>">
 <% if current_user.favorites.find_by(event_id: event.id) %>
-<%= link_to 'あとで見るを取り消す', favorite_path(current_user.favorites.find_by(event_id: event.id)), method: :delete, remote: true, class: 'btn waves-effect waves-light' %>
+<%= link_to 'あとで見るを取り消す',
+            favorite_path(current_user.favorites.find_by(event_id: event.id)),
+            method: :delete,
+            remote: true,
+            onclick: "M.toast({html: '「#{event.title}」をお気に入りから解除しました', displayLength: 2000})",
+            class: 'btn waves-effect waves-light' %>
 <% else %>
-<%= link_to 'あとで見る', favorites_path(event_id: event.id), method: :post, remote: true, class: 'btn waves-effect waves-light' %>
+<%= link_to 'あとで見る',
+            favorites_path(event_id: event.id),
+            method: :post,
+            remote: true,
+            onclick: "M.toast({html: '「#{event.title}」をお気に入りに登録しました', displayLength: 2000})",
+            class: 'btn waves-effect waves-light' %>
 <% end %>
 </div>
