@@ -46,6 +46,7 @@
 
 <% if user_signed_in? && current_user != @event.user %>
 <%= render 'participate_link', event: @event %>
+<br>
 <%= render 'favorite_link', event: @event %>
 <% end %>
 
