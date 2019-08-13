@@ -12,25 +12,24 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <label>
-        <%= f.check_box :remember_me %>
-        <span>ログインを記憶</span>
-      </label>
-    </div>
+  <div class="field">
+    <label>
+      <%= f.check_box :remember_me %>
+      <span>ログインを記憶</span>
+    </label>
+  </div>
   <% end %>
 
   <div class="actions">
     <%= f.submit "ログイン", class: 'btn waves-effect waves-light' %>
-    <% end %>
-
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <%= f.hidden_field :email, value: ENV["test_user_email"] %>
-    <%= f.hidden_field :password, value: ENV["test_user_password"] %>
-    <%= f.submit 'テストユーザでログイン', class: 'waves-effect waves-light btn cfd8dc blue-grey lighten-4' %>
-    <% end %>
-
   </div>
+<% end %>
+
+<br>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= f.hidden_field :email, value: ENV["test_user_email"] %>
+<%= f.hidden_field :password, value: ENV["test_user_password"] %>
+<%= f.submit 'テストユーザでログイン', class: 'waves-effect waves-light btn cfd8dc blue-grey lighten-4' %>
+<% end %>
 
 <%= render "devise/shared/links" %>
-<br />
