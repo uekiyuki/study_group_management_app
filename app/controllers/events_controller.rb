@@ -25,7 +25,9 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  def edit; end
+  def edit
+    redirect_to @event, notice: 'アクセス権がありません' unless @event.user_id == current_user.id
+  end
 
   def create
     @event = current_user.events.build(event_params)
@@ -39,19 +41,23 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event.tag_list.clear
-    @event.tag_list.add(params[:event][:tag_list])
+    if @event.user_id == current_user.id
+      @event.tag_list.clear
+      @event.tag_list.add(params[:event][:tag_list])
 
-    if @event.update(event_params)
-      redirect_to @event, notice: 'イベントが更新されました！'
+      @event.update(event_params) ? redirect_to(@event, notice: 'イベントが更新されました！') : render('edit')
     else
-      render :edit
+      redirect_to @event, notice: '権限がありません'
     end
   end
 
   def destroy
-    @event.destroy
-    redirect_to events_url, notice: 'イベントが削除されました！'
+    if @event.user_id == current_user.id
+      @event.destroy
+      redirect_to events_url, notice: 'イベントが削除されました！'
+    else
+      redirect_to @event, notice: '権限がありません'
+    end
   end
 
   private
