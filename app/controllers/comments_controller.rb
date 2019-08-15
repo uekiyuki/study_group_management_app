@@ -13,11 +13,7 @@ class CommentsController < ApplicationController
     # @comment = current_user.comments.build(comment_params_to_hash)
 
     respond_to do |format|
-      if @comment.save
-        format.js { render :index }
-      else
-        format.html { redirect_to event_path(@event), notice: '投稿できません' }
-      end
+      format.js { render :index } if @comment.save
     end
   end
 
