@@ -2,6 +2,8 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_user!
   def create
     @event = Event.find(params[:event_id])
+    return if @event.held?
+
     redirect_to event_path(@event), notice: '定員オーバーのため参加できません' if @event.participants.count >= @event.capacity
     current_user.participants.create(event_id: @event.id)
   end

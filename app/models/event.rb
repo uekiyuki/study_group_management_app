@@ -37,4 +37,9 @@ class Event < ApplicationRecord
   def image_resize(size)
     image.variant(resize: "#{size}x#{size}").processed
   end
+
+  # イベントが開催済みか
+  def held?
+    event_at < Date.current
+  end
 end

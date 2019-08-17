@@ -45,7 +45,7 @@
 <p>タグ: <%= raw(@event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
 
 <% if user_signed_in? && current_user != @event.user %>
-<%= render 'participate_link', event: @event %>
+<%= render 'participate_link', event: @event unless @event.held? %>
 <br>
 <%= render 'favorite_link', event: @event %>
 <% end %>
