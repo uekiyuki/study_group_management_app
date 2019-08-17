@@ -1,7 +1,7 @@
 <% comments.each do |comment| %>
   <% if comment.id.present? %>
   <div class="comment-frame">
-    <%= "投稿者:#{ comment.user.name }" %><%= "(開催者)" if comment.user == current_user %><br>
+    <%= "投稿者:#{ comment.user.name }" %><%= "(開催者)" if comment.user == event.user %><br>
     <%= comment.content %>
   </div>
   <% end %>
