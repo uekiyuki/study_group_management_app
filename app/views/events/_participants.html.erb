@@ -1,0 +1,12 @@
+<div id="participants_<%= "#{@event.id}" %>">
+  <p>
+    <strong>参加人数:</strong>
+    <%= "#{@event.participants.count}名" %>
+  </p>
+  <p>
+    <strong>参加者:</strong>
+    <% @event.participant_users.each do |user| %>
+      <br>・<%= user.name %>
+    <% end %>
+  </p>
+</div>

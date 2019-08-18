@@ -1,1 +1,2 @@
 $("#participate_link_"+"<%= @event.id %>").html("<%= j(render 'events/participate_link', event: @event ) %>")
+$("#participants_"+"<%= @event.id %>").html("<%= j(render 'events/participants', event: @event ) %>")
